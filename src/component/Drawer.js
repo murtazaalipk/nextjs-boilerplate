@@ -7,13 +7,6 @@ export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const mode = useSelector((state) => state.theme.mode);
 
-//   const navLinks = (
-//     <div >
-//       <a href="#" className="hover:underline">Home</a>
-//       <a href="#" className="hover:underline">About</a>
-//       <a href="#" className="hover:underline">Contact</a>
-//     </div>
-//   );
 
   return (
     <>

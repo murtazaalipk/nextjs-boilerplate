@@ -10,13 +10,13 @@ export default function Header() {
 
   const desktopLinks = (
     <div className="flex justify-center items-baseline gap-5">
-      <a href="#" className="hover:underline">
+      <a href="/" className="hover:underline">
         Home
       </a>
-      <a href="#" className="hover:underline">
+      <a href="/about" className="hover:underline">
         About
       </a>
-      <a href="#" className="hover:underline">
+      <a href="/contact" className="hover:underline">
         Contact
       </a>
       <ToggleThemeButton />
@@ -25,13 +25,13 @@ export default function Header() {
 
   const mobileLinks = (
     <div className="flex flex-col space-y-4">
-      <a href="#" className="hover:underline">
+      <a href="/" className="hover:underline">
         Home
       </a>
-      <a href="#" className="hover:underline">
+      <a href="/about" className="hover:underline">
         About
       </a>
-      <a href="#" className="hover:underline">
+      <a href="/contact" className="hover:underline">
         Contact
       </a>
       <ToggleThemeButton />
