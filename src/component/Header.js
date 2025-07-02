@@ -19,6 +19,10 @@ export default function Header() {
       <a href="/contact" className="hover:underline">
         Contact
       </a>
+      <a href="/dashboard" className="hover:underline">
+        Dashboard
+      </a>
+
       <ToggleThemeButton />
     </div>
   );
@@ -34,10 +38,13 @@ export default function Header() {
       <a href="/contact" className="hover:underline">
         Contact
       </a>
+      <a href="/dashboard" className="hover:underline">
+        Dashboard
+      </a>
+   
       <ToggleThemeButton />
     </div>
   );
- 
 
   return (
     <>
