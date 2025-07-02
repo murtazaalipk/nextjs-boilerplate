@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
+import themeReducer from './slices/themeSlice';
+
 import {
   persistStore,
   persistReducer,
@@ -10,19 +12,20 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',
   storage,
 };
 
-const persistedUserReducer = persistReducer(persistConfig, userReducer);
+const persistedUser = persistReducer(persistConfig, userReducer);
+const persistedTheme = persistReducer(persistConfig, themeReducer);
 
 export const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
+    user: persistedUser,
+    theme: persistedTheme,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
