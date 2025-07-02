@@ -1,26 +1,9 @@
-// "use client";
-// import useThemeClass from "@/hooks/useThemeClass";
-// import ThemeToggle from "./ThemeToggle";
-// function ThemeWrapper({ children }) {
-//   const themeClass = useThemeClass();
-
-//   return (
-//     <div className={`${themeClass} min-h-screen p-10`}>
-//       <header className="p-4 border-b dark:border-gray-600">
-//         <ThemeToggle />
-//       </header>
-//       <main className="p-6">{children}</main>
-//     </div>
-//   );
-// }
-// export default ThemeWrapper;
-
 'use client';
 
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ThemeToggle from './ThemeToggle';
-
+import Header from './Header'; // Assuming you have a Header component 
 export default function ThemeWrapper({ children }) {
   const mode = useSelector((state) => state.theme.mode);
 
@@ -43,9 +26,10 @@ export default function ThemeWrapper({ children }) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
-      <header className="p-4 border-b dark:border-gray-600">
-        <ThemeToggle />
+      <header className="p-4 ">
+            <Header />
       </header>
+
       <main className="p-6">{children}</main>
     </div>
   );
