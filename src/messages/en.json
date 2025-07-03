@@ -1,0 +1,6 @@
+{
+  "HomePage": {
+    "title": "Welcome to the Boilerplate",
+    "description": "This is a modern Next.js starter template with full support for the App Router, Redux Toolkit, Tailwind CSS, Dark Mode, Drawer UI, and more."
+  }
+}

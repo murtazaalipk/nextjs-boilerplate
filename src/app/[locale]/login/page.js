@@ -2,7 +2,7 @@
 'use client'; // This component needs to be a Client Component
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import {useRouter} from '@/i18n/navigation'; // ✅ from next-intl/navigation
 import { useState, useEffect } from 'react';
 
 export default function LoginPage() {
@@ -37,15 +37,12 @@ export default function LoginPage() {
   };
 
   return (
-    // Outer container for the card, ensuring it's centered if layout.js isn't already
-    // However, with layout.js set to flex center, this wrapper might be redundant for centering.
-    // We'll keep it as a common pattern for pages that are standalone cards.
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm mx-auto w-full text-center sm:p-10">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">
+    <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg max-w-sm mx-auto w-full text-center sm:p-10">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
         Manage Your Login Status
       </h1>
 
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 dark:text-gray-300">
         Current Cookie Status: <span className="font-semibold">{cookieStatus}</span>
       </p>
 

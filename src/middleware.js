@@ -1,29 +1,42 @@
-// my-login-cookie-demo/middleware.js
+// middleware.js
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const currentPath = request.nextUrl.pathname;
-  console.log(`[Middleware] Path: ${currentPath}`);
+  const { pathname } = request.nextUrl;
+  console.log(`[Middleware] Path: ${pathname}`);
 
-  // Check if the request is for the /dashboard path
-  if (currentPath === '/dashboard') {
-    // Check for our authentication cookie named 'user_logged_in'
+  // Split the path into segments
+  const segments = pathname.split('/').filter(Boolean);
+
+  // Determine the actual path and optional locale
+  let locale = null;
+  let path = pathname;
+
+  // Check if the first segment looks like a locale (e.g. 'en', 'ur')
+  if (['en', 'ur', ].includes(segments[0])) {
+    locale = segments[0];
+    path = '/' + segments.slice(1).join('/');
+  }
+
+  // ✅ Check if the path (with or without locale) is protected
+  if (path === '/dashboard') {
     const isAuthenticated = request.cookies.get('user_logged_in');
 
     if (!isAuthenticated) {
-      console.log('[Middleware] Not authenticated for /dashboard. Redirecting to /login.');
-      // Redirect to the login page if the cookie is not present
-      return NextResponse.redirect(new URL('/login', request.url));
-    } else {
-      console.log('[Middleware] Authenticated for /dashboard. Allowing access.');
+      console.log('[Middleware] Not authenticated. Redirecting to login.');
+
+      // Redirect to the correct login page
+      const loginPath = locale ? `/${locale}/login` : '/login';
+      return NextResponse.redirect(new URL(loginPath, request.url));
     }
+
+    console.log('[Middleware] Authenticated. Access granted.');
   }
 
-  // Allow all other requests (or authenticated dashboard requests) to proceed
   return NextResponse.next();
 }
 
-// Configure the middleware to run only for the /dashboard path
+// ✅ Match both localized and non-localized routes
 export const config = {
-  matcher: ['/dashboard'],
+  matcher: ['/dashboard', '/(en|ur|de)/dashboard'],
 };

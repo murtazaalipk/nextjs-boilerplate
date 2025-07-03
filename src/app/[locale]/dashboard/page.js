@@ -2,7 +2,7 @@
 'use client'; // Mark as a Client Component
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // Import useRouter
+import {useRouter} from '@/i18n/navigation'; // ✅ from next-intl/navigation
 
 export default function DashboardPage() {
   const router = useRouter(); // Initialize router
@@ -15,9 +15,11 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto w-full text-center sm:p-10">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome to your Dashboard!</h1>
-      <p className="mb-6 text-gray-600">
+       <div className="bg-white dark:bg-gray-900 p-8 sm:p-10 rounded-lg shadow-lg max-w-md mx-auto w-full text-center transition-colors duration-300">
+      <h1 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">
+        Welcome to your Dashboard!
+      </h1>
+      <p className="mb-6 text-gray-600 dark:text-gray-300">
         You've successfully accessed this protected area.
         You can go back home or log out.
       </p>

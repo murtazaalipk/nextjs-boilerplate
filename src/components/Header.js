@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import ToggleThemeButton from "./ThemeToggle"; // Import the theme toggle button
+import {Link} from '@/i18n/navigation';
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -10,18 +11,18 @@ export default function Header() {
 
   const desktopLinks = (
     <div className="flex justify-center items-baseline gap-5">
-      <a href="/" className="hover:underline">
+      <Link href="/" className="hover:underline">
         Home
-      </a>
-      <a href="/about" className="hover:underline">
+      </Link>
+      <Link href="/about" className="hover:underline">
         About
-      </a>
-      <a href="/contact" className="hover:underline">
+      </Link>
+      <Link href="/contact" className="hover:underline">
         Contact
-      </a>
-      <a href="/dashboard" className="hover:underline">
+      </Link>
+      <Link href="/dashboard" className="hover:underline">
         Dashboard
-      </a>
+      </Link>
 
       <ToggleThemeButton />
     </div>
@@ -29,19 +30,19 @@ export default function Header() {
 
   const mobileLinks = (
     <div className="flex flex-col space-y-4">
-      <a href="/" className="hover:underline">
+      <Link href="/" className="hover:underline">
         Home
-      </a>
-      <a href="/about" className="hover:underline">
+      </Link>
+      <Link href="/about" className="hover:underline">
         About
-      </a>
-      <a href="/contact" className="hover:underline">
+      </Link>
+      <Link href="/contact" className="hover:underline">
         Contact
-      </a>
-      <a href="/dashboard" className="hover:underline">
+      </Link>
+      <Link href="/dashboard" className="hover:underline">
         Dashboard
-      </a>
-   
+      </Link>
+
       <ToggleThemeButton />
     </div>
   );
