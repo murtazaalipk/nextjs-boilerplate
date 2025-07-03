@@ -1,42 +1,38 @@
-// middleware.js
 import { NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-export function middleware(request) {
-  const { pathname } = request.nextUrl;
-  console.log(`[Middleware] Path: ${pathname}`);
+const intlMiddleware = createMiddleware(routing);
 
-  // Split the path into segments
-  const segments = pathname.split('/').filter(Boolean);
+export default function middleware(request) {
+  const pathname = request.nextUrl.pathname;
 
-  // Determine the actual path and optional locale
-  let locale = null;
-  let path = pathname;
-
-  // Check if the first segment looks like a locale (e.g. 'en', 'ur')
-  if (['en', 'ur', ].includes(segments[0])) {
-    locale = segments[0];
-    path = '/' + segments.slice(1).join('/');
-  }
-
-  // ✅ Check if the path (with or without locale) is protected
-  if (path === '/dashboard') {
+  // 🔒 Auth protection for dashboard (optional)
+  if (pathname.match(/^\/(en|ur)?\/dashboard$/)) {
     const isAuthenticated = request.cookies.get('user_logged_in');
-
     if (!isAuthenticated) {
-      console.log('[Middleware] Not authenticated. Redirecting to login.');
-
-      // Redirect to the correct login page
-      const loginPath = locale ? `/${locale}/login` : '/login';
-      return NextResponse.redirect(new URL(loginPath, request.url));
+      return NextResponse.redirect(new URL(`/${getLocaleFromPath(pathname)}/login`, request.url));
     }
-
-    console.log('[Middleware] Authenticated. Access granted.');
   }
 
-  return NextResponse.next();
+  // 🌐 Default locale redirect
+  if (pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${routing.defaultLocale}`; // e.g. '/en'
+    return NextResponse.redirect(url);
+  }
+
+  // 🌍 All other i18n behavior
+  return intlMiddleware(request);
 }
 
-// ✅ Match both localized and non-localized routes
+function getLocaleFromPath(pathname) {
+  const match = pathname.match(/^\/(en|ur)/);
+  return match?.[1] || routing.defaultLocale;
+}
+
 export const config = {
-  matcher: ['/dashboard', '/(en|ur|de)/dashboard'],
+  matcher: [
+    '/((?!_next|favicon.ico|api|trpc|.*\\..*).*)', // Match everything except these
+  ]
 };
