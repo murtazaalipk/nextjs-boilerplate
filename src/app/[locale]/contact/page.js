@@ -13,6 +13,7 @@ export default function ContactPage() {
   // };
 
   return (
+
     // <div className="p-6">
     //   <h1 className="text-xl font-bold mb-4">Contact Page (User Info)</h1>
 
@@ -34,6 +35,7 @@ export default function ContactPage() {
     //     </div>
     //   )}
     // </div>
+    
     <div className="min-h-screen px-4 py-10 md:px-8 lg:px-16 bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">

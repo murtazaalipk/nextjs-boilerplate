@@ -104,6 +104,9 @@ export const fetchUser = createAsyncThunk('user/fetch', async (_, { rejectWithVa
   }
 });
 ```
+The boilerplate includes an async thunk (fetchUser) example using Redux Toolkit and a custom apiRequest helper.
+
+Although the fetch logic is commented out in /contact/page.js, you can view the implementation and easily enable it by dispatching fetchUser() when needed.
 
 *(See full code in `redux/slices/userSlice.js`)*
 
