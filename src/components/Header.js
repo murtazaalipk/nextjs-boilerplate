@@ -47,7 +47,10 @@ export default function Header() {
       <Link href="/dashboard" className="hover:underline">
         Dashboard
       </Link>
-
+      <Link href="/settings" className="hover:underline">
+        Settings
+      </Link>
+      <LanguageSwitcher />
       <ToggleThemeButton />
     </div>
   );
