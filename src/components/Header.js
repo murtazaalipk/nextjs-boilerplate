@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import ToggleThemeButton from "./ThemeToggle"; // Import the theme toggle button
 import {Link} from '@/i18n/navigation';
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function Header() {
         Dashboard
       </Link>
 
+      <LanguageSwitcher/>
       <ToggleThemeButton />
     </div>
   );
